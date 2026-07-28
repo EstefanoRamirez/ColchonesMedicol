@@ -133,8 +133,8 @@ CSS STRUCTURE:
 
 /* Fonts */
 :root {
-  --body-font: "DM Sans", Verdana, sans-serif;
-  --heading-font: "Syne", Lato, sans-serif;
+  --body-font: "Montserrat", Verdana, sans-serif;
+  --heading-font: "Montserrat", Lato, sans-serif;
 }
 
 
@@ -3126,4 +3126,215 @@ select.form-select {
   .single-post .post-description img {
     width: 100%;
   }
+}
+/* --- Custom Enhancements: Brand Colors & Footer --- */
+:root {
+  --brand-primary: #1A2530; /* Deep Charcoal Navy */
+  --brand-secondary: #C5A059; /* Champagne Gold */
+}
+
+/* Footer Styling */
+#footer, #footer-bottom {
+  background-color: var(--brand-primary) !important;
+  color: #fff !important;
+}
+
+#footer h5.widget-title, 
+#footer .footer-menu h5,
+#footer .footer-menu p,
+#footer .footer-menu a,
+#footer-bottom p,
+#footer-bottom a {
+  color: #f1f1f1 !important;
+}
+
+#footer h5.widget-title {
+  color: var(--brand-secondary) !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#footer .social-links a i,
+#footer .newsletter-button a i {
+  color: var(--brand-secondary) !important;
+}
+
+#footer hr {
+  border-color: rgba(197, 160, 89, 0.3) !important;
+}
+
+#footer h3 {
+  color: var(--brand-secondary) !important;
+}
+
+/* Remove Gray Line in Header */
+#header, .header-wrap, .border-bottom {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Force Instagram Images to be tall rectangles, NO border-radius */
+#instagram img, .insta-image {
+  aspect-ratio: 4/5 !important;
+  object-fit: cover !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0 !important;
+}
+
+/* Instagram section: edge-to-edge */
+#instagram {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#instagram .container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#instagram .row.g-2 {
+  margin: 0 !important;
+  --bs-gutter-x: 4px;
+}
+
+/* Instagram items: no outer padding */
+#instagram .instagram-item {
+  padding: 2px !important;
+}
+
+@media (max-width: 767px) {
+  #instagram .instagram-item {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+/* Product titles: Montserrat, uppercase, DARK and BOLD */
+.product-title,
+.product-title a {
+  font-family: "Montserrat", sans-serif !important;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: #1a1a1a !important;
+}
+
+/* More spacing between product image and title */
+.product-detail {
+  margin-top: 18px !important;
+  padding-top: 10px;
+}
+
+.product-detail .item-price {
+  margin-top: 6px;
+  display: inline-block;
+}
+
+/* Section titles: Montserrat, DARK, BOLD */
+.section-title {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #1a1a1a !important;
+}
+
+/* Category images: cover containers with min-height to prevent collapse */
+.category-item .image-holder {
+  overflow: hidden;
+}
+
+.category-item .image-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.category-item.top-block,
+.category-item.bottom-block {
+  min-height: 250px;
+  overflow: hidden;
+}
+
+.category-item.top-block .image-holder,
+.category-item.bottom-block .image-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Category titles: DARK, BOLD */
+.category-title {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Banner title: DARK, BOLD */
+.banner-title {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* Blog post images: uniform height, rounded corners */
+.post-item .image-holder {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.post-item .image-holder img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.post-item:hover .image-holder img {
+  transform: scale(1.03);
+}
+
+/* Blog post titles: centered, bold, dark */
+.post-title,
+.post-title a {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.post-content {
+  text-align: center;
+  padding: 15px 5px;
+}
+
+.post-header p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+/* Header: remove ALL lines/borders */
+#header,
+.header-wrap,
+#header .border-bottom,
+#header .border-top,
+.header-wrap .row {
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.content-box.border-top.border-bottom {
+  border-top: 1px solid rgba(0,0,0,0.08) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.08) !important;
 }
