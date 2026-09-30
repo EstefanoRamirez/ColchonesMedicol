@@ -1,813 +1,414 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <title>Colchones Medicol - El Mejor Descanso</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colchones Medicol | Colchones para mascotas, ortopédicos y hospitalarios en Quito</title>
+  <meta name="description" content="Colchones para mascotas, colchones ortopédicos y hospitalarios, y cojines terapéuticos. Más de 28 años en Ecuador. Envíos en Quito y retiro en tienda.">
   <meta name="author" content="Colchones Medicol">
-  <meta name="keywords" content="colchones, perros, mascotas, ortopedicos, descanso">
-  <meta name="description" content="Encuentra el mejor descanso para ti y para tus mascotas con Colchones Medicol. Somos especialistas en colchones ortopédicos para perros..">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="fonts/icomoon.css">
-  <link rel="stylesheet" type="text/css" href="css/vendor.css">
-  <!--Bootstrap ================================================== -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <meta name="theme-color" content="#1A2530">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_EC">
+  <meta property="og:site_name" content="Colchones Medicol">
+  <meta property="og:title" content="Colchones Medicol | Colchones para mascotas, ortopédicos y hospitalarios en Quito">
+  <meta property="og:description" content="Colchones para mascotas, colchones ortopédicos y hospitalarios, y cojines terapéuticos. Más de 28 años en Ecuador. Envíos en Quito y retiro en tienda.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function () {
+      var d = document.documentElement, t;
+      d.classList.add("js");
+      try { t = localStorage.getItem("medicol-tema"); } catch (e) {}
+      if (t !== "dark" && t !== "light") {
+        t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      d.setAttribute("data-theme", t);
+      d.setAttribute("data-bs-theme", t);
+    })();
+  </script>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="fonts/icomoon.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/medicol.css">
 </head>
 
-<body class="hompage bg-accent-light">
+<body data-page="inicio">
+  <svg xmlns="http://www.w3.org/2000/svg" class="mc-sprite" aria-hidden="true" focusable="false">
+    <symbol id="mc-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+    <symbol id="mc-wave" viewBox="0 0 160 22"><path d="M4 12C38 1 70 20 104 10c18-5 34-6 52-2-20-1-34 3-52 9C70 28 40 12 4 12Z" fill="#4E86B8"/><path d="M26 18c28-8 52 6 80-2 14-4 28-5 44-2-16 0-28 4-44 8-28 7-52-6-80-4Z" fill="#8DB4D6"/></symbol>
+  </svg>
 
-  <header id="header" class=" content-light ">
-    <div class="header-wrap container py-3">
-      <div class="row align-items-center">
-        <div class="primary-nav col-md-5 col-sm-2">
-          <nav class="navbar">
-            <div class="main-menu">
-              <ul class="menu-list  list-unstyled d-flex m-0 ">
-                <li class="menu-itemhome1 dropdown">
-                  <a class="text-uppercase item-anchor dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> Inicio </a>
-                  <ul class="dropdown-menu">
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item" href="index.html">
-                        Página Principal</a></li>
-                  </ul>
-                </li>
-                <li class="menu-itemhome1">
-                  <a href="about-us.html" class="text-uppercase item-anchor">Nosotros</a>
-                </li>
-                <li class="menu-itemhome1 dropdown">
-                  <a class="text-uppercase item-anchor dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> Tienda </a>
-                  <ul class="dropdown-menu">
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item" href="shop.html">Ver Todo</a></li>
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item"
-                        href="single-product.html">Colchones para Perros</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-itemhome1 dropdown">
-                  <a class="text-uppercase item-anchor dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> Blog </a>
-                  <ul class="dropdown-menu">
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item" href="blog.html">Consejos de Descanso</a></li>
-                  </ul>
-                </li>
-                <li class="menu-itemhome1 dropdown">
-                  <a class="text-uppercase item-anchor dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> Contacto </a>
-                  <ul class="dropdown-menu">
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item"
-                        href="contact.html">Escríbenos</a></li>
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item"
-                        href="cart.html">Carrito</a></li>
-                    <li class="sub-page pe-0"><a class="text-black text-uppercase dropdown-item"
-                        href="checkout.html">Pagar</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="col-md-2 col-sm-4 brand-block ">
-          <div class="main-logo text-lg-center">
-            <a href="index.html">
-              <h2 class="brand-text m-0" style="font-weight: 900; color: #1A2530; letter-spacing: 2px;">MEDICOL.</h2>
-            </a>
-          </div>
-        </div>
-        <div class="right-block col-md-5 col-sm-4">
-          <nav class="navbar justify-content-end">
-            <div class="user-items">
-              <ul class="list-unstyled content-light d-flex align-items-center m-0">
-                <li>
-                  <i class="icon icon-user"></i>
-                  <a href="my-account.html" class="text-uppercase item-anchor">Acceder</a>
-                </li>
-                <li class="search-item">
-                  <div class="search-bar">
-                    <form action="/action_page.php" class="search-form d-flex no-margin">
-                      <i class="icon icon-search"></i>
-                      <input type="text" placeholder="BUSCAR.." name="search"
-                        class="title-placeholder no-margin text-light ">
-                    </form>
-                  </div>
-                </li>
-                <li>
-                  <a href="#" class="like">
-                    <i class="icon icon-like"></i>
-                    <span>(0)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="cart for-buy">
-                    <i class="icon icon-shopping-cart"></i>
-                    <span>(0)</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
+  <a class="mc-skip" href="#contenido">Saltar al contenido</a>
+
+  <div class="mc-topbar">
+    <div class="container mc-topbar-inner">
+      <p><strong>Promo mascotas</strong> · El 2do colchón a mitad de precio</p>
+      <p>Envíos en Quito en menos de 5 días · Retiro en tienda</p>
+      <a href="#" data-wa><svg class="mc-ico" aria-hidden="true"><use href="#mc-wa"/></svg> 099 880 4606</a>
     </div>
-  </header>
-  <section id="billboard" class="padding-large no-padding-top position-relative">
-    <div class="image-holder">
-      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Perro descansando en colchón premium" class="banner-image" style="width: 100%; object-fit: cover; max-height: 85vh; opacity: 0.75;">
-    </div>
-    <div class="banner-content content-light style1 text-center col-md-6">
-      <h2 class="banner-title">
-        Compromiso con tu salud y confort.
-      </h2>
-      <div class="btn-center">
-        <a href="#" class="btn btn-medium btn-light">Comprar Ahora</a>
-      </div>
-    </div>
-  </section>
-  <section id="company-services">
-    <div class="container my-5">
-      <div class="row">
-        <div class="icon-box-wrapper d-flex flex-wrap justify-content-between">
-          <div class="icon-box text-center col-md-3 col-sm-12">
-            <div class="content-box border-top border-bottom">
-              <div class="icon-box-icon">
-                <i class="icon icon-shipping"></i>
-              </div>
-              <div class="icon-content">
-                <h3 class="no-margin">Envío rápido</h3>
-                <p>Envíos dentro de la ciudad en menos de 5 días</p>
-              </div>
-            </div>
-          </div>
-          <div class="icon-box text-center col-md-3 col-sm-12">
-            <div class="content-box border-top border-bottom">
-              <div class="icon-box-icon">
-                <i class="icon icon-store"></i>
-              </div>
-              <div class="icon-content">
-                <h3 class="no-margin">Recogida en tienda</h3>
-                <p>Tenemos la opción de recoger directamente en tienda.</p>
-              </div>
-            </div>
-          </div>
-          <div class="icon-box text-center col-md-3 col-sm-12">
-            <div class="content-box border-top border-bottom">
-              <div class="icon-box-icon">
-                <i class="icon icon-package"></i>
-              </div>
-              <div class="icon-content">
-                <h3 class="no-margin">Empaque seguro</h3>
-                <p>Garantizamos el mejor empaque para nuestros colchones.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="fashion-trending" class="product-store padding-large position-relative overflow-hidden">
-    <div class="container mb-5">
-      <div class="section-header text-center">
-        <h2 class="section-title">Productos Destacados</h2>
-        <p>Descubre nuestros colchones estrella para mascotas.</p>
-      </div>
-      <div class="row">
-        <div class="swiper product-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item1.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón Perros Pequeños (70x50cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$43.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item2.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón Perros Medianos (100x70cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$55.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item3.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón Perros Grandes (100x90cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$72.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item4.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón Perros Más Grandes (120x100)</a>
-                  </h3>
-                  <span class="item-price text-primary">$109.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item5.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón para Gatos (50x40cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$32.00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-button swiper-button-next"></div>
-        <div class="swiper-button swiper-button-prev"></div>
-        <div class="btn-center">
-          <a href="shop.html" class="btn btn-medium btn-black">Ver Catálogo</a>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
-  </section>
-  <section id="videos">
-    <div class="video-item position-relative">
-      <div class="video-player">
-        <img src="images/video-item.jpg" alt="video" class="video-image">
-        <a href="https://www.youtube.com/embed/rhcjYIPgpt8">
-          <i class="icon icon-play"></i>
+  </div>
+
+  <header class="mc-header">
+    <div class="container mc-header-inner">
+      <button class="mc-burger" type="button" aria-controls="mc-nav" aria-expanded="false" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a class="mc-logo" href="index.html" aria-label="Colchones Medicol, inicio">
+        <span class="mc-logo-text">MEDICOL</span>
+        <svg class="mc-logo-wave" aria-hidden="true"><use href="#mc-wave"/></svg>
+      </a>
+
+      <form class="mc-search" action="tienda.html" method="get" role="search">
+        <input type="search" name="q" id="mc-search-input" placeholder="Buscar colchones, cojines..." aria-label="Buscar productos">
+        <button type="submit" aria-label="Buscar"><i class="icon icon-search" aria-hidden="true"></i></button>
+      </form>
+
+      <div class="mc-actions">
+        <button class="mc-theme" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro" title="Cambiar tema">
+          <svg class="mc-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="mc-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <a class="mc-action mc-action-wa" href="#" data-wa><svg class="mc-ico" aria-hidden="true"><use href="#mc-wa"/></svg> <span class="mc-action-label">WhatsApp</span></a>
+        <a class="mc-action mc-cart" href="carrito.html" data-cart-label aria-label="Carrito">
+          <i class="icon icon-shopping-cart" aria-hidden="true"></i>
+          <span class="mc-cart-count" data-cart-count data-count="0">0</span>
+          <span class="mc-action-label">Carrito</span>
         </a>
       </div>
     </div>
-  </section>
-  <section id="testimonials" class="position-relative padding-large">
-    <div class="container mt-5">
-      <div class="row pt-5">
-        <div class="review-content">
-          <i class="icon-arrow icon-arrow-left"></i>
-          <div class="swiper testimonial-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide text-center d-flex justify-content-center">
-                <div class="review-item col-md-8">
-                  <i class="icon icon-review"></i>
-                  <blockquote>“Desde que le compré el colchón ortopédico a mi perrito, duerme mucho mejor y ya no le duelen las articulaciones. ¡Excelente calidad y muy fácil de lavar!”</blockquote>
-                  <div class="rating-star">
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star-line"></i>
-                  </div>
-                  <div class="author-detail">
-                    <div class="name text-primary">Laura Mendoza</div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide text-center d-flex justify-content-center">
-                <div class="review-item col-md-8">
-                  <i class="icon icon-review"></i>
-                  <blockquote>“Compré un colchón matrimonial para nosotros y una cama nido para nuestra mascota. Ambos son increíblemente cómodos. El envío fue rapidísimo y la atención excelente.”</blockquote>
-                  <div class="rating-star">
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star"></i>
-                    <i class="icon icon-star-line"></i>
-                  </div>
-                  <div class="author-detail">
-                    <div class="name text-primary">Carlos Ruiz</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <i class="icon-arrow icon-arrow-right"></i>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
-  </section>
-  <section id="new-arrivals" class="product-store padding-large position-relative overflow-hidden">
-    <div class="container mb-5">
-      <div class="section-header text-center">
-        <h2 class="section-title">Nuevos Ingresos</h2>
-        <p>Los modelos más recientes de colchones para ti y tu mascota.</p>
-      </div>
-      <div class="row">
-        <div class="swiper product-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item9.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn 
-                          d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón Hosp. Antiescaras (200x90cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$137.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item6.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn 
-                          d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Colchón Ortopédico Articulado (200x90cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$147.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item7.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn 
-                          d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Cojín Antiescaras Silla Ruedas</a>
-                  </h3>
-                  <span class="item-price text-primary">$17.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item8.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn 
-                          d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Cojín BBL Pos Cirugía Glúteos</a>
-                  </h3>
-                  <span class="item-price text-primary">$29.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item position-relative">
-                <div class="image-holder">
-                  <img src="images/product-item10.jpg" alt="product-item" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex flex-wrap">
-                    <div class="btn-left">
-                      <a href="#" class="btn btn-medium btn-light">Añadir al Carrito</a>
-                    </div>
-                    <button type="button" class="btn btn-light wishlist-btn">
-                      <i class="icon icon-like"></i>
-                    </button>
-                    <button type="button" class="btn btn-light view-btn 
-                          d-flex">
-                      <i class="icon icon-crop"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail text-center">
-                  <h3 class="product-title">
-                    <a href="#">Cojín Antirreflujo (60x60x35cm)</a>
-                  </h3>
-                  <span class="item-price text-primary">$47.00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-button swiper-button-next"></div>
-        <div class="swiper-button swiper-button-prev"></div>
-        <div class="btn-center">
-          <a href="#" class="btn btn-medium btn-black">Ver Catálogo</a>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-pagination1"></div>
-  </section>
-  <section id="categories" class="overflow-hidden">
-    <div class="full-width-container d-flex flex-wrap">
-      <div class="category-item left-block col-md-6 col-sm-12 no-padding-left position-relative" style="min-height: 500px;">
-        <div class="image-holder" style="position:absolute; top:0; left:0; right:0; bottom:0;">
-          <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Camas para perros" style="width:100%; height:100%; object-fit:cover; display:block;">
-        </div>
-        <div class="category-content content-light">
-          <h3 class="category-title">Camas para Perros</h3>
-          <div class="btn-left">
-            <a href="#" class="btn btn-medium btn-light">Ver Colección</a>
-          </div>
-        </div>
-      </div>
-      <div class="right-block col-md-6 col-sm-12 no-padding-right d-flex flex-column">
-        <div class="category-item top-block position-relative" style="flex:1; min-height:250px;">
-          <div class="image-holder" style="position:absolute; top:0; left:0; right:0; bottom:0;">
-            <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Colchones ortopédicos" style="width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <div class="category-content content-light">
-            <h3 class="category-title">Colchones Ortopédicos</h3>
-            <div class="btn-left">
-              <a href="#" class="btn btn-medium btn-outline-light">Comprar Ahora</a>
-            </div>
-          </div>
-        </div>
-        <div class="category-item bottom-block position-relative" style="flex:1; min-height:250px;">
-          <div class="image-holder" style="position:absolute; top:0; left:0; right:0; bottom:0;">
-            <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Accesorios de descanso" style="width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <div class="category-content content-light">
-            <h3 class="category-title">Accesorios de Descanso</h3>
-            <div class="btn-left">
-              <a href="#" class="btn btn-medium btn-outline-light">Comprar Ahora</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="latest-blog" class="padding-large overflow-hidden">
-    <div class="container">
-      <div class="row">
-        <div class="section-header text-center">
-          <h2 class="section-title">Nuestro Blog</h2>
-          <p>Lee nuestras noticias y consejos de descanso</p>
-        </div>
-        <div class="row d-flex flex-wrap">
-          <article class="col-md-4 post-item">
-            <div class="image-holder">
-              <a href="single-post.html">
-                <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Perro en su cama" class="post-image" style="width:100%; height:250px; object-fit:cover;">
-              </a>
-            </div>
-            <div class="post-content">
-              <div class="post-header text-center">
-                <h3 class="post-title">
-                  <a href="single-post.html">Cómo elegir el colchón ideal para tu perro</a>
-                </h3>
-                <p>Consejos prácticos para mejorar el sueño y calidad de vida de tu mascota.</p>
-              </div>
-            </div>
-          </article>
-          <article class="col-md-4 post-item">
-            <div class="image-holder">
-              <a href="single-post.html">
-                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Colchón ortopédico" class="post-image" style="width:100%; height:250px; object-fit:cover;">
-              </a>
-            </div>
-            <div class="post-content">
-              <div class="post-header text-center">
-                <h3 class="post-title">
-                  <a href="single-post.html">Beneficios de los colchones ortopédicos</a>
-                </h3>
-                <p>Por qué deberías considerar cambiar tu viejo colchón por uno ortopédico.</p>
-              </div>
-            </div>
-          </article>
-          <article class="col-md-4 post-item">
-            <div class="image-holder">
-              <a href="single-post.html">
-                <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Hábitos de sueño" class="post-image" style="width:100%; height:250px; object-fit:cover;">
-              </a>
-            </div>
-            <div class="post-content">
-              <div class="post-header text-center">
-                <h3 class="post-title">
-                  <a href="single-post.html">Hábitos de sueño saludables</a>
-                </h3>
-                <p>Descubre las rutinas que te ayudarán a descansar como nunca antes.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="btn-center">
-          <a href="#" class="btn btn-medium btn-black">Leer Todo</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="instagram" class="padding-large overflow-hidden">
-    <div class="container-fluid px-4">
-      <div class="row">
-        <div class="section-header text-center">
-          <h2 class="section-title">Síguenos en Instagram</h2>
-        </div>
-        <div class="row g-2 justify-content-center">
-          <figure class="instagram-item col p-1 m-0">
-            <a href="#" class="d-block overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Instagram Medicol" class="insta-image" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-            </a>
-          </figure>
-          <figure class="instagram-item col p-1 m-0">
-            <a href="#" class="d-block overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Instagram Medicol" class="insta-image" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-            </a>
-          </figure>
-          <figure class="instagram-item col p-1 m-0">
-            <a href="#" class="d-block overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Instagram Medicol" class="insta-image" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-            </a>
-          </figure>
-          <figure class="instagram-item col p-1 m-0">
-            <a href="#" class="d-block overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Instagram Medicol" class="insta-image" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-            </a>
-          </figure>
-          <figure class="instagram-item col p-1 m-0">
-            <a href="#" class="d-block overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Instagram Medicol" class="insta-image" style="width:100%; aspect-ratio:1/1; object-fit:cover;">
-            </a>
-          </figure>
-        </div>
+    <nav class="mc-nav" id="mc-nav" aria-label="Principal">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="tienda.html?cat=mascotas" class="mc-nav-hot">Mascotas <span>Promo</span></a></li>
+          <li><a href="tienda.html?cat=colchones">Colchones hospitalarios</a></li>
+          <li><a href="tienda.html?cat=cojines">Cojines terapéuticos</a></li>
+          <li><a href="tienda.html?cat=promociones">Promociones</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
       </div>
-    </div>
-  </section>
-  <footer id="footer" class="overflow-hidden">
-    <div class="container mt-5">
-      <div class="row">
-        <div class="footer-top-area">
-          <div class="row d-flex flex-wrap justify-content-between">
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-menu menu-001">
-                <div class="main-logo text-lg-center">
-          <a href="index.html">
-            <h2 class="brand-text m-0" style="font-weight: 900; color: #C5A059; letter-spacing: 2px;">MEDICOL.</h2>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <!-- Banner principal -->
+    <section class="mc-hero" aria-label="Destacados">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img class="mc-hero-bg" src="images/banners/hero-mascota.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+            <div class="container">
+              <div class="mc-hero-content">
+                <span class="mc-kicker">Colección mascotas</span>
+                <h1 class="mc-hero-title">El descanso que <strong>tu mascota merece</strong></h1>
+                <p class="mc-hero-text">Colchones acolchados que separan a tu perro del piso frío y le dan su propio espacio para dormir.</p>
+                <div class="mc-hero-price">2do colchón <strong>50% off</strong></div>
+                <div class="mc-hero-actions">
+                  <a href="producto.html?id=colchon-mascota" class="btn-mc btn-mc-light">Comprar ahora</a>
+                  <a href="tienda.html?cat=mascotas" class="btn-mc btn-mc-outline-light">Ver mascotas</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img class="mc-hero-bg" src="images/banners/hero-ortopedicos.jpg" alt="" width="1920" height="1080" loading="lazy">
+            <div class="container">
+              <div class="mc-hero-content">
+                <span class="mc-kicker">Salud y cuidado en casa</span>
+                <h2 class="mc-hero-title">Colchones <strong>ortopédicos y hospitalarios</strong></h2>
+                <p class="mc-hero-text">Articulados, antiescaras y con forro impermeable, pensados para el cuidado diario del paciente.</p>
+                <div class="mc-hero-actions">
+                  <a href="tienda.html?cat=colchones" class="btn-mc btn-mc-light">Ver colchones</a>
+                  <a href="#" data-wa="Me gustaría recibir asesoría para elegir un colchón hospitalario." class="btn-mc btn-mc-outline-light">Pedir asesoría</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide mc-hero-slide-split">
+            <div class="container">
+              <div class="mc-hero-split">
+                <div class="mc-hero-content">
+                  <span class="mc-kicker">Promoción cojines geriátricos</span>
+                  <h2 class="mc-hero-title">Tres cojines <strong>por $79</strong></h2>
+                  <p class="mc-hero-text">Herradura antiescaras, cojín para silla de ruedas y cojín auxiliar para cambio de pañal adulto.</p>
+                  <div class="mc-hero-actions">
+                    <a href="producto.html?id=combo-cojines-geriatricos" class="btn-mc btn-mc-light">Aprovechar promo</a>
+                    <a href="tienda.html?cat=cojines" class="btn-mc btn-mc-outline-light">Ver cojines</a>
+                  </div>
+                </div>
+                <div class="mc-hero-split-media">
+                  <img src="images/productos/cojin-herradura.jpg" alt="Cojín antiescaras forma de herradura" width="600" height="545" loading="lazy">
+                  <img src="images/productos/cojin-silla-ruedas.jpg" alt="Cojín antiescaras para silla de ruedas" width="555" height="495" loading="lazy">
+                  <img src="images/productos/cojin-cambio-panal.jpg" alt="Cojín auxiliar para cambio de pañal adulto" width="610" height="545" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="mc-hero-arrows">
+        <button type="button" class="mc-hero-prev" aria-label="Anterior"><i class="icon icon-arrow-left" aria-hidden="true"></i></button>
+        <button type="button" class="mc-hero-next" aria-label="Siguiente"><i class="icon icon-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="mc-benefits" aria-label="Por qué comprar en Medicol">
+      <div class="container">
+        <ul>
+          <li><i class="icon icon-user" aria-hidden="true"></i><span>Asesoría personalizada<small>Te ayudamos a elegir</small></span></li>
+          <li><i class="icon icon-shipping" aria-hidden="true"></i><span>Envío rápido<small>Quito, menos de 5 días</small></span></li>
+          <li><i class="icon icon-store" aria-hidden="true"></i><span>Retiro en tienda<small>Recoge tu pedido</small></span></li>
+          <li><i class="icon icon-package" aria-hidden="true"></i><span>Empaque seguro<small>Llega en perfecto estado</small></span></li>
+          <li><i class="icon icon-star" aria-hidden="true"></i><span>+28 años<small>Sirviendo al Ecuador</small></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="mc-section" id="categorias">
+      <div class="container">
+        <header class="mc-head mc-reveal">
+          <span class="mc-kicker">Categorías</span>
+          <h2 class="mc-title">Nuestros <strong>productos</strong></h2>
+        </header>
+        <div class="mc-cats">
+          <a class="mc-cat mc-reveal" href="tienda.html?cat=mascotas">
+            <img src="images/banners/mascotas-camas.jpg" alt="" width="1200" height="1200" loading="lazy">
+            <div class="mc-cat-body">
+              <h3>Mascotas</h3>
+              <span>Ver colección</span>
+            </div>
+          </a>
+          <a class="mc-cat mc-reveal" href="tienda.html?cat=colchones">
+            <img src="images/productos/colchon-articulado.jpg" alt="" width="590" height="430" loading="lazy">
+            <div class="mc-cat-body">
+              <h3>Colchones hospitalarios</h3>
+              <span>Ver colección</span>
+            </div>
+          </a>
+          <a class="mc-cat mc-reveal" href="tienda.html?cat=cojines">
+            <img src="images/productos/cojin-elevador-rectangular.jpg" alt="" width="365" height="320" loading="lazy">
+            <div class="mc-cat-body">
+              <h3>Cojines terapéuticos</h3>
+              <span>Ver colección</span>
+            </div>
           </a>
         </div>
-                <p>Más de 28 años sirviendo al Ecuador. Compromiso con tu salud y confort.</p>
-                <div
-                  class="newsletter-button d-flex flex-wrap align-items-center justify-content-between border-bottom widget-menu">
-                  <input type="text" name="Subscribe" placeholder="Ingresa tu correo electrónico...">
-                  <a href="#">
-                    <i class="icon icon-send"></i>
-                  </a>
+      </div>
+    </section>
+
+    <!-- Oferta mascotas -->
+    <section class="mc-reveal" aria-labelledby="oferta-mascotas">
+      <div class="mc-pet">
+        <div class="mc-pet-media">
+          <img src="images/banners/hero-mascota.jpg" alt="Perro descansando en su cama" width="1920" height="1080" loading="lazy">
+          <figure class="mc-pet-real">
+            <img src="images/productos/colchon-mascota.jpg" alt="Colchón Medicol para mascota, talla M" width="330" height="295" loading="lazy">
+            <span>Foto real del producto</span>
+          </figure>
+        </div>
+        <div class="mc-pet-body">
+          <span class="mc-kicker">Promoción mascotas</span>
+          <h2 class="mc-title" id="oferta-mascotas">El 2do colchón <strong>a mitad de precio</strong></h2>
+          <p class="mc-lead">Colchón talla M de 66 × 100 cm y 8 cm de espesor, con funda afelpada. Ideal para perros medianos.</p>
+          <div class="mc-price-table">
+            <div class="mc-price-row"><span>1 colchón</span><strong>$39.00</strong></div>
+            <div class="mc-price-row is-best"><span>2 colchones<small>Ahorras $19.50</small></span><strong>$58.50</strong></div>
+          </div>
+          <div class="mc-btn-row">
+            <button type="button" class="btn-mc btn-mc-dark" data-add="colchon-mascota" data-qty="2">Llevar 2 por $58.50</button>
+            <a href="producto.html?id=colchon-mascota" class="btn-mc btn-mc-outline">Ver producto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Destacados -->
+    <section class="mc-section" id="destacados">
+      <div class="container">
+        <header class="mc-head mc-reveal">
+          <span class="mc-kicker">Lo más pedido</span>
+          <h2 class="mc-title">Productos <strong>destacados</strong></h2>
+        </header>
+        <div class="mc-carousel">
+          <div class="swiper">
+            <div class="swiper-wrapper" data-products="todos" data-slides></div>
+          </div>
+          <button type="button" class="mc-carousel-btn mc-carousel-prev" aria-label="Productos anteriores"><i class="icon icon-arrow-left" aria-hidden="true"></i></button>
+          <button type="button" class="mc-carousel-btn mc-carousel-next" aria-label="Productos siguientes"><i class="icon icon-arrow-right" aria-hidden="true"></i></button>
+          <div class="swiper-pagination"></div>
+        </div>
+        <p class="text-center mt-5"><a href="tienda.html" class="btn-mc btn-mc-outline">Ver toda la tienda</a></p>
+      </div>
+    </section>
+
+    <!-- Promoción cojines -->
+    <section class="mc-promo-wrap mc-section">
+      <div class="container mc-promo">
+        <div class="mc-reveal">
+          <span class="mc-kicker">Cuidado del adulto mayor</span>
+          <h2 class="mc-title">Promoción <strong>cojines geriátricos</strong></h2>
+          <div class="mc-promo-price"><strong>$79</strong> por los 3 cojines</div>
+          <ul class="mc-checks">
+            <li>Cojín antiescaras en forma de herradura</li>
+            <li>Cojín antiescaras para silla de ruedas</li>
+            <li>Cojín auxiliar para cambio de pañal adulto</li>
+          </ul>
+          <div class="mc-btn-row">
+            <button type="button" class="btn-mc btn-mc-light" data-add="combo-cojines-geriatricos">Añadir al carrito</button>
+            <a href="producto.html?id=combo-cojines-geriatricos" class="btn-mc btn-mc-outline-light">Ver detalle</a>
+          </div>
+        </div>
+        <div class="mc-promo-media mc-reveal">
+          <img src="images/productos/promo-cojines-geriatricos.jpg" alt="Promoción cojines geriátricos: herradura, silla de ruedas y cambio de pañal, 3 por $79" width="710" height="707" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="position-relative mc-section">
+      <div class="container">
+        <header class="mc-head">
+          <span class="mc-kicker">Testimonios</span>
+          <h2 class="mc-title">Lo que dicen <strong>nuestros clientes</strong></h2>
+        </header>
+        <div class="row">
+          <div class="review-content">
+            <i class="icon-arrow icon-arrow-left" role="button" tabindex="0" aria-label="Anterior"></i>
+            <div class="swiper testimonial-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide text-center d-flex justify-content-center">
+                  <div class="review-item col-md-8">
+                    <i class="icon icon-review" aria-hidden="true"></i>
+                    <blockquote>“Desde que le compré el colchón ortopédico a mi perrito, duerme mucho mejor y ya no le duelen las articulaciones. ¡Excelente calidad y muy fácil de lavar!”</blockquote>
+                    <div class="rating-star" role="img" aria-label="4 de 5 estrellas">
+                      <i class="icon icon-star"></i><i class="icon icon-star"></i><i class="icon icon-star"></i><i class="icon icon-star"></i><i class="icon icon-star-line"></i>
+                    </div>
+                    <div class="author-detail">
+                      <div class="name text-primary">Laura Mendoza</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="social-links">
-                  <ul class="d-flex list-unstyled">
-                    <li>
-                      <a href="#">
-                        <i class="icon icon-facebook"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="icon icon-twitter"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="icon icon-instagram1"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="icon icon-youtube"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="icon icon-behance"></i>
-                      </a>
-                    </li>
-                  </ul>
+                <div class="swiper-slide text-center d-flex justify-content-center">
+                  <div class="review-item col-md-8">
+                    <i class="icon icon-review" aria-hidden="true"></i>
+                    <blockquote>“Compré un colchón matrimonial para nosotros y una cama nido para nuestra mascota. Ambos son increíblemente cómodos. El envío fue rapidísimo y la atención excelente.”</blockquote>
+                    <div class="rating-star" role="img" aria-label="4 de 5 estrellas">
+                      <i class="icon icon-star"></i><i class="icon icon-star"></i><i class="icon icon-star"></i><i class="icon icon-star"></i><i class="icon icon-star-line"></i>
+                    </div>
+                    <div class="author-detail">
+                      <div class="name text-primary">Carlos Ruiz</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-2 col-sm-6">
-              <div class="footer-menu menu-002">
-                <h5 class="widget-title">Enlaces Rápidos</h5>
-                <ul class="menu-list list-unstyled text-uppercase">
-                  <li class="menu-item">
-                    <a href="#">Inicio</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Nosotros</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Tienda</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Blog</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Contacto</a>
-                  </li>
-                </ul>
-              </div>
+            <i class="icon-arrow icon-arrow-right" role="button" tabindex="0" aria-label="Siguiente"></i>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </section>
+
+    <!-- Catálogo -->
+    <section class="mc-section mc-section-grey">
+      <div class="container mc-split">
+        <div class="mc-reveal">
+          <span class="mc-kicker">Catálogo 2026</span>
+          <h2 class="mc-title">Todos nuestros productos <strong>en un solo lugar</strong></h2>
+          <p class="mc-lead">Revisa las características de cada producto y descarga el catálogo en PDF para compartirlo.</p>
+          <div class="mc-btn-row mt-4">
+            <a href="catalogo.html" class="btn-mc btn-mc-dark">Ver catálogo</a>
+            <a href="#" data-wa="Me gustaría recibir el catálogo de productos." class="btn-mc btn-mc-wa"><svg class="mc-ico" aria-hidden="true"><use href="#mc-wa"/></svg> Pedir por WhatsApp</a>
+          </div>
+        </div>
+        <img class="mc-reveal" src="images/banners/dormitorio.jpg" alt="Dormitorio con cama y colchón" width="1200" height="900" loading="lazy">
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="overflow-hidden">
+    <div class="container pt-5">
+      <div class="footer-top-area">
+        <div class="row d-flex flex-wrap justify-content-between">
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="footer-menu menu-001">
+              <a class="mc-logo" href="index.html" aria-label="Colchones Medicol, inicio">
+                <span class="mc-logo-text">MEDICOL</span>
+                <svg class="mc-logo-wave" aria-hidden="true"><use href="#mc-wave"/></svg>
+              </a>
+              <p class="mt-3">Más de 28 años sirviendo al Ecuador. Compromiso con tu salud y confort.</p>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-menu text-uppercase menu-003">
-                <h5 class="widget-title">Ayuda e Información</h5>
-                <ul class="menu-list list-unstyled">
-                  <li class="menu-item">
-                    <a href="#">Rastrea tu Pedido</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Políticas de Devolución</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Envíos y Entregas</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Contáctanos</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#">Preguntas Frecuentes</a>
-                  </li>
-                </ul>
-              </div>
+          </div>
+          <div class="col-lg-2 col-sm-6 mb-4">
+            <div class="footer-menu menu-002">
+              <h5 class="widget-title">Tienda</h5>
+              <ul class="menu-list list-unstyled">
+                <li class="menu-item"><a href="tienda.html?cat=mascotas">Mascotas</a></li>
+                <li class="menu-item"><a href="tienda.html?cat=colchones">Colchones hospitalarios</a></li>
+                <li class="menu-item"><a href="tienda.html?cat=cojines">Cojines terapéuticos</a></li>
+                <li class="menu-item"><a href="tienda.html?cat=promociones">Promociones</a></li>
+                <li class="menu-item"><a href="catalogo.html">Catálogo</a></li>
+              </ul>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="footer-menu contact-item menu-004">
-                <h5 class="widget-title">Contáctanos</h5>
-                <p>¿Tienes preguntas o sugerencias? <a href="mailto:medicolscc@hotmail.com">medicolscc@hotmail.com</a>
-                </p>
-                <p>¿Necesitas soporte? Llámanos. <a href="tel:0997272879">099 727 2879</a>
-                </p>
-                <p>📍 Quito, Ecuador</p>
-              </div>
+          </div>
+          <div class="col-lg-2 col-sm-6 mb-4">
+            <div class="footer-menu menu-003">
+              <h5 class="widget-title">Ayuda</h5>
+              <ul class="menu-list list-unstyled">
+                <li class="menu-item"><a href="carrito.html">Mi carrito</a></li>
+                <li class="menu-item"><a href="contacto.html#como-comprar">Cómo comprar</a></li>
+                <li class="menu-item"><a href="contacto.html#envios">Envíos y retiro</a></li>
+                <li class="menu-item"><a href="nosotros.html">Nosotros</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="footer-menu contact-item menu-004">
+              <h5 class="widget-title">Contáctanos</h5>
+              <p>WhatsApp: <a href="#" data-wa>099 880 4606</a></p>
+              <p>Teléfono: <a href="tel:+593997272879">099 727 2879</a></p>
+              <p>Correo: <a href="mailto:medicolscc@hotmail.com">medicolscc@hotmail.com</a></p>
+              <p>Quito, Ecuador</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <hr>
+    <div id="footer-bottom">
+      <div class="container">
+        <p>© <span data-year>2026</span> Colchones Medicol. Todos los derechos reservados.</p>
+        <p>Plantilla base: <a href="https://templatesjungle.com/" target="_blank" rel="noopener">TemplatesJungle</a></p>
+      </div>
+    </div>
   </footer>
 
+  <a class="mc-wa-float" href="#" data-wa aria-label="Escríbenos por WhatsApp">
+    <svg class="mc-ico" aria-hidden="true"><use href="#mc-wa"/></svg>
+  </a>
 
-
-  <!-- script ================================================== -->
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="js/plugins.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/tienda.js"></script>
   <script src="js/script.js"></script>
-
-  <!-- Bootstarp script ================================================== -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
-
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-
 </body>
 
 </html>
