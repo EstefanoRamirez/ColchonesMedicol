@@ -165,7 +165,7 @@
   /* ---------- Aviso ---------- */
 
   var toastTimer;
-  var showToast = function (text) {
+  var showToast = function (text, sinEnlace) {
     var toast = $(".mc-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -174,7 +174,7 @@
       toast.setAttribute("aria-live", "polite");
       document.body.appendChild(toast);
     }
-    toast.innerHTML = "<span>" + esc(text) + "</span><a href=\"carrito.html\">Ver carrito</a>";
+    toast.innerHTML = "<span>" + esc(text) + "</span>" + (sinEnlace ? "" : "<a href=\"carrito.html\">Ver carrito</a>");
     toast.classList.add("is-visible");
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 3500);
@@ -200,6 +200,20 @@
     return "<button type=\"button\" class=\"btn-mc btn-mc-dark " + extraClass + "\" data-add=\"" + p.id + "\">Añadir al carrito</button>";
   };
 
+  // Versión chica de la foto principal (carrito, resumen y catálogo)
+  var thumbSrc = function (p) {
+    return p.imagenes[0].replace(/principal\.webp$/, "principal-400.webp");
+  };
+
+  // Foto de tarjeta: versión de 400 px en celular y la grande en pantallas amplias
+  var cardImage = function (p) {
+    var src = p.imagenes[0];
+    var small = /principal\.webp$/.test(src) ? src.replace(/principal\.webp$/, "principal-400.webp") : "";
+    return "<img src=\"" + (small || src) + "\"" +
+      (small ? " srcset=\"" + small + " 400w, " + src + " 800w\" sizes=\"(min-width: 1200px) 300px, (min-width: 768px) 33vw, 50vw\"" : "") +
+      " alt=\"" + esc(p.nombre) + "\" loading=\"lazy\" decoding=\"async\" width=\"800\" height=\"800\">";
+  };
+
   var renderCard = function (p) {
     var badge = p.etiqueta ? "<span class=\"mc-badge" + (p.promo ? " mc-badge-gold" : "") + "\">" + esc(p.etiqueta) + "</span>" : "";
     var price = p.precio == null
@@ -208,7 +222,7 @@
 
     return "<article class=\"mc-card\">" +
       "<a class=\"mc-card-media\" href=\"" + productUrl(p) + "\" aria-label=\"" + esc(p.nombre) + "\">" + badge +
-      "<img src=\"" + p.imagenes[0] + "\" alt=\"" + esc(p.nombre) + "\" loading=\"lazy\" width=\"600\" height=\"600\"></a>" +
+      cardImage(p) + "</a>" +
       "<div class=\"mc-card-body\">" +
       "<span class=\"mc-card-cat\">" + esc(DATA.categorias[p.categoria]) + "</span>" +
       "<h3 class=\"mc-card-title\"><a href=\"" + productUrl(p) + "\">" + esc(p.nombre) + "</a></h3>" +
@@ -255,6 +269,7 @@
     var params = new URLSearchParams(window.location.search);
     var q = (params.get("q") || "").trim();
     var form = $("#mc-filters");
+    form.addEventListener("submit", function (e) { e.preventDefault(); });
     var catBox = $("#mc-filter-cats");
 
     catBox.innerHTML = Object.keys(DATA.categorias).map(function (key) {
@@ -273,6 +288,10 @@
 
     var title = $("#mc-shop-title");
     if (title && initialCat && DATA.categorias[initialCat]) title.textContent = DATA.categorias[initialCat];
+
+    // Nombre de la pestaña según lo que se está viendo
+    if (initialCat && DATA.categorias[initialCat]) document.title = DATA.categorias[initialCat] + " · Tienda · Colchones Medicol";
+    if (q) document.title = "Búsqueda: " + q + " · Tienda · Colchones Medicol";
 
     var normalize = function (s) {
       return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -312,6 +331,7 @@
       q = "";
       if (searchInput) searchInput.value = "";
       if (title) title.textContent = "Tienda";
+      document.title = "Tienda · Colchones Medicol";
       window.history.replaceState(null, "", "tienda.html");
       render();
     });
@@ -340,7 +360,7 @@
       return;
     }
 
-    document.title = p.nombre + " | Colchones Medicol";
+    document.title = p.nombre + " · Colchones Medicol";
     var meta = $("meta[name=description]");
     if (meta) meta.setAttribute("content", p.resumen);
     $$("[data-crumb-cat]").forEach(function (a) {
@@ -397,9 +417,9 @@
           options +
           "<div class=\"mc-product-block\">" + buy + "</div>" +
           "<ul class=\"mc-trust\">" +
-            "<li><i class=\"icon icon-shipping\" aria-hidden=\"true\"></i> Envíos dentro de Quito en menos de 5 días</li>" +
-            "<li><i class=\"icon icon-store\" aria-hidden=\"true\"></i> Opción de retiro en tienda</li>" +
-            "<li><i class=\"icon icon-package\" aria-hidden=\"true\"></i> Empaque seguro</li>" +
+            "<li><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-truck\"></use></svg> Envíos dentro de Quito en menos de 5 días</li>" +
+            "<li><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-store\"></use></svg> Opción de retiro en tienda</li>" +
+            "<li><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-package\"></use></svg> Empaque seguro</li>" +
           "</ul>" +
         "</div>" +
       "</div>" +
@@ -509,7 +529,7 @@
             : "<span class=\"mc-save\">Añade otro y el 2do sale a mitad de precio</span>";
         }
         return "<div class=\"mc-cart-row\">" +
-          "<img src=\"" + p.imagenes[0] + "\" alt=\"\" width=\"100\" height=\"100\">" +
+          "<img src=\"" + thumbSrc(p) + "\" alt=\"\" width=\"100\" height=\"100\">" +
           "<div class=\"mc-cart-info\"><h2 class=\"mc-cart-name\"><a href=\"" + productUrl(p) + "\">" + esc(p.nombre) + "</a></h2>" +
           "<div class=\"mc-cart-meta\">" + (it.opcion ? esc(p.opciones ? p.opciones.titulo : "Opción") + ": " + esc(it.opcion) + "<br>" : "") +
           money(p.precio) + " c/u" + promoNote + "</div></div>" +
@@ -517,7 +537,7 @@
           "<input type=\"number\" value=\"" + it.cantidad + "\" min=\"0\" max=\"99\" data-line=\"" + i + "\" aria-label=\"Cantidad de " + esc(p.nombre) + "\">" +
           "<button type=\"button\" data-line=\"" + i + "\" data-step=\"1\" aria-label=\"Añadir uno\">+</button></div>" +
           "<div class=\"mc-cart-total\">" + money(p.precio * it.cantidad) + "</div>" +
-          "<button type=\"button\" class=\"mc-cart-remove\" data-remove=\"" + i + "\" aria-label=\"Eliminar " + esc(p.nombre) + "\"><i class=\"icon icon-trash\" aria-hidden=\"true\"></i></button>" +
+          "<button type=\"button\" class=\"mc-cart-remove\" data-remove=\"" + i + "\" aria-label=\"Eliminar " + esc(p.nombre) + "\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-trash\"></use></svg></button>" +
           "</div>";
       }).join("");
 
@@ -569,7 +589,7 @@
     return "<h2>Tu pedido</h2>" +
       items.map(function (it) {
         var p = getProduct(it.id);
-        return "<div class=\"mc-summary-item\"><img src=\"" + p.imagenes[0] + "\" alt=\"\" width=\"56\" height=\"56\">" +
+        return "<div class=\"mc-summary-item\"><img src=\"" + thumbSrc(p) + "\" alt=\"\" width=\"56\" height=\"56\">" +
           "<span><strong>" + esc(p.nombre) + "</strong>" + (it.opcion ? esc(it.opcion) + " · " : "") + "Cant. " + it.cantidad + "</span>" +
           "<span>" + money(p.precio * it.cantidad) + "</span></div>";
       }).join("") +
@@ -589,6 +609,7 @@
   var initCheckout = function () {
     var root = $("#mc-checkout");
     if (!root) return;
+    var abierto = Date.now(); // para descartar envíos automáticos demasiado rápidos
 
     var items = readCart();
     if (!items.length) {
@@ -600,8 +621,27 @@
     var form = $("#mc-checkout-form");
     $("#mc-checkout-summary").innerHTML = summaryHtml(items) +
       "<button type=\"submit\" form=\"mc-checkout-form\" class=\"btn-mc btn-mc-dark btn-mc-block\">Confirmar pedido</button>" +
-      "<p class=\"mc-summary-note\">Al confirmar se abrirá WhatsApp con el detalle de tu pedido para coordinar el pago y la entrega.</p>";
+      "<p class=\"mc-summary-note\">Al confirmar se abrirá WhatsApp con el detalle de tu pedido para coordinar el pago y la entrega.</p>" +
+      "<p class=\"mc-checkout-legal\">Al confirmar aceptas nuestra <a href=\"privacidad.html\" target=\"_blank\">Política de privacidad</a> " +
+      "y las condiciones de <a href=\"envios.html\" target=\"_blank\">envíos, cambios y devoluciones</a>.</p>";
     root.hidden = false;
+
+    // Verificación anti-bots de Cloudflare (Turnstile). Solo se activa si hay clave configurada.
+    var captcha = null;
+    if (DATA.turnstileSiteKey) {
+      captcha = document.createElement("div");
+      captcha.className = "cf-turnstile mc-captcha";
+      captcha.setAttribute("data-sitekey", DATA.turnstileSiteKey);
+      captcha.setAttribute("data-appearance", "interaction-only");
+      captcha.setAttribute("data-language", "es");
+      captcha.setAttribute("data-theme", document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
+      form.appendChild(captcha);
+      var s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    }
 
     var toggleAddress = function () {
       var delivery = form.querySelector("input[name=entrega]:checked").value;
@@ -632,6 +672,12 @@
         }
       });
       if (!valid) return;
+
+      var captchaToken = captcha ? String(new FormData(form).get("cf-turnstile-response") || "") : "";
+      if (captcha && !captchaToken) {
+        showToast("Estamos verificando que no eres un robot. Intenta confirmar de nuevo en unos segundos.", true);
+        return;
+      }
 
       var data = new FormData(form);
       var val = function (name) { return String(data.get(name) || "").trim(); };
@@ -690,7 +736,9 @@
               : { tipo: "retiro" },
             pago: val("pago"),
             notas: val("notas"),
-            web: val("web")
+            web: val("web"),
+            turnstile: captchaToken,
+            t: Date.now() - abierto
           })
         }).catch(function () { /* sin servidor (por ejemplo, abriendo el archivo local) */ });
       } catch (err) { /* navegador sin fetch */ }
@@ -716,7 +764,7 @@
     root.innerHTML = DATA.productos.map(function (p) {
       var price = p.precio == null ? "Precio a consultar" : money(p.precio) + (p.etiqueta ? " · " + p.etiqueta : "");
       return "<article class=\"mc-sheet mc-reveal\">" +
-        "<img src=\"" + p.imagenes[0] + "\" alt=\"" + esc(p.nombre) + "\" loading=\"lazy\" width=\"600\" height=\"600\">" +
+        "<img src=\"" + thumbSrc(p) + "\" alt=\"" + esc(p.nombre) + "\" loading=\"lazy\" width=\"600\" height=\"600\">" +
         "<div><span class=\"mc-kicker\">" + esc(DATA.categorias[p.categoria]) + "</span>" +
         "<h2>" + esc(p.nombre) + "</h2>" +
         "<p class=\"mc-sheet-price\">" + price + "</p>" +
@@ -726,8 +774,6 @@
         "</div></article>";
     }).join("");
 
-    var print = $("#mc-print");
-    if (print) print.addEventListener("click", function () { window.print(); });
   };
 
   /* ---------- Enlaces de WhatsApp y teléfono ---------- */
@@ -762,7 +808,39 @@
     });
   };
 
+  /* ---------- Descarga del catálogo en PDF ---------- */
+
+  // Los botones "Descargar PDF" descargan siempre el catálogo oficial de descargas/.
+  var CATALOGO_PDF = "descargas/catalogo-colchones-medicol.pdf";
+
+  var initCatalogPdf = function () {
+    $$("[data-catalogo-pdf]").forEach(function (link) {
+      link.href = CATALOGO_PDF;
+      link.setAttribute("download", "Catalogo-Colchones-Medicol.pdf");
+      link.setAttribute("type", "application/pdf");
+    });
+  };
+
   /* ---------- Clics globales ---------- */
+
+  // Pestañas de la ficha de producto (Características / Envío y pago)
+  document.addEventListener("click", function (e) {
+    var tab = e.target.closest("[data-bs-toggle=\"tab\"]");
+    if (!tab) return;
+    e.preventDefault();
+    var nav = tab.closest("[role=tablist]");
+    var pane = document.querySelector(tab.getAttribute("data-bs-target"));
+    if (!nav || !pane) return;
+    $$("[data-bs-toggle=\"tab\"]", nav).forEach(function (t) {
+      var active = t === tab;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", String(active));
+      t.tabIndex = active ? 0 : -1;
+      var p = document.querySelector(t.getAttribute("data-bs-target"));
+      if (p) p.classList.toggle("active", active);
+      if (p) p.classList.toggle("show", active);
+    });
+  });
 
   document.addEventListener("click", function (e) {
     var add = e.target.closest("[data-add]");
@@ -791,6 +869,7 @@
     initCartPage();
     initCheckout();
     initCatalog();
+    initCatalogPdf();
     initContactForm();
     document.dispatchEvent(new CustomEvent("mc:rendered"));
   });

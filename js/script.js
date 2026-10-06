@@ -60,9 +60,10 @@
 
     // Cambia sola cada HERO_DELAY ms (también con las flechas); la barra dorada marca el tiempo
     var HERO_DELAY = 6000;
-    document.querySelector(".mc-hero").style.setProperty("--mc-hero-delay", HERO_DELAY + "ms");
+    var hero = document.querySelector(".mc-hero");
+    hero.style.setProperty("--mc-hero-delay", HERO_DELAY + "ms");
 
-    new Swiper(el, {
+    var swiper = new Swiper(el, {
       loop: true,
       speed: 1000,
       effect: "fade",
@@ -85,6 +86,23 @@
         paginationBulletMessage: "Ir a la diapositiva {{index}}"
       }
     });
+
+    // Botón de pausa (accesibilidad: todo lo que se mueve solo debe poder detenerse)
+    var pause = hero.querySelector(".mc-hero-pause");
+    var setPaused = function (paused) {
+      hero.classList.toggle("is-paused", paused);
+      if (paused) swiper.autoplay.stop(); else swiper.autoplay.start();
+      if (pause) {
+        pause.setAttribute("aria-pressed", String(paused));
+        pause.setAttribute("aria-label", paused ? "Reanudar el banner" : "Pausar el banner");
+      }
+    };
+    // El banner siempre empieza en movimiento; solo se detiene si la persona pulsa pausa
+    if (pause) {
+      pause.addEventListener("click", function () {
+        setPaused(!hero.classList.contains("is-paused"));
+      });
+    }
   };
 
   // Carruseles de productos: desde tablet se deslizan y al llegar al final vuelven al primero;
@@ -149,8 +167,8 @@
       loop: true,
       autoplay: { delay: 6000, disableOnInteraction: false },
       navigation: {
-        nextEl: "#testimonios .icon-arrow-right",
-        prevEl: "#testimonios .icon-arrow-left"
+        nextEl: "#testimonios .mc-t-next",
+        prevEl: "#testimonios .mc-t-prev"
       },
       pagination: {
         el: "#testimonios .swiper-pagination",
