@@ -16,6 +16,10 @@
     WHATSAPP_AVISOS         Números que reciben el aviso por WhatsApp con su clave de CallMeBot,
                             con el formato "593998804606:1234567" y separados por coma (secreta).
     CONFIRMAR_CLIENTE       Pon "no" para no enviar la confirmación por correo al cliente.
+    PLANILLA_URL            Dirección de la aplicación web de Google Apps Script que anota
+                            cada pedido en la hoja de cálculo (ver docs/planilla-pedidos.gs).
+    PLANILLA_CLAVE          La misma clave escrita en ese script (secreta).
+    TURNSTILE_SECRET        Clave secreta de Cloudflare Turnstile (anti-bots). Si falta, no se verifica.
 */
 
 const PAGOS = {
@@ -39,6 +43,21 @@ export async function onRequestPost({ request, env }) {
 
   // Campo trampa: las personas no lo ven; si viene lleno, es un bot.
   if (text(input.web, 200)) return json({ ok: true });
+
+  // Nadie llena el checkout en menos de 3 segundos: si pasa, es un envío automático.
+  if (!(Number(input.t) >= 3000)) return json({ ok: true });
+
+  // Solo se aceptan pedidos enviados desde la propia web
+  const origen = request.headers.get("Origin");
+  if (origen && new URL(origen).host !== new URL(request.url).host) {
+    return json({ ok: false, error: "Origen no permitido" }, 403);
+  }
+
+  // Verificación anti-bots de Cloudflare (Turnstile), si está configurada
+  if (env.TURNSTILE_SECRET) {
+    const humano = await verificarTurnstile(env.TURNSTILE_SECRET, text(input.turnstile, 2048), request.headers.get("CF-Connecting-IP"));
+    if (!humano) return json({ ok: false, error: "No se pudo verificar que eres una persona" }, 403);
+  }
 
   let catalogo;
   try {
@@ -88,8 +107,54 @@ export async function onRequestPost({ request, env }) {
     );
   }
 
+  if (env.PLANILLA_URL && env.PLANILLA_CLAVE) {
+    resultado.planilla = "error";
+    tareas.push(
+      anotarEnPlanilla(env, pedido).then((ok) => { resultado.planilla = ok ? "anotado" : "error"; })
+    );
+  }
+
   await Promise.allSettled(tareas);
   return json(resultado);
+}
+
+/* ---------- Registro en la hoja de cálculo (Google Sheets) ---------- */
+
+async function anotarEnPlanilla(env, p) {
+  const e = p.entrega;
+  const fila = {
+    clave: env.PLANILLA_CLAVE,
+    fecha: p.fecha,
+    pedido: p.id,
+    cliente: p.cliente.nombre,
+    telefono: p.cliente.telefono,
+    whatsapp: `https://wa.me/${telefonoInternacional(p.cliente.telefono, "")}`,
+    correo: p.cliente.email,
+    cedula: p.cliente.cedula,
+    productos: p.items.map(lineaProducto).join("\n"),
+    total: Number(p.total.toFixed(2)),
+    descuento: Number(p.descuento.toFixed(2)),
+    pago: p.pago,
+    entrega: e.tipo === "domicilio" ? "Envío a domicilio" : "Retiro en tienda",
+    ciudad: e.ciudad || "",
+    sector: e.sector || "",
+    direccion: e.direccion || "",
+    referencia: e.referencia || "",
+    notas: p.notas
+  };
+  try {
+    const res = await fetch(env.PLANILLA_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(fila),
+      redirect: "follow"
+    });
+    if (!res.ok) return false;
+    const r = await res.json().catch(() => ({}));
+    return r.ok === true;
+  } catch (err) {
+    return false;
+  }
 }
 
 /* ---------- Catálogo y cálculo del pedido ---------- */
@@ -236,7 +301,7 @@ function lineasEntrega(p) {
 function avisoWhatsapp(p) {
   const partes = [
     "*¡Nuevo pedido en la web!*",
-    `*Pedido:* ${p.id}\n*Total:* ${dinero(p.total)} (envío por confirmar)`,
+    `*Pedido:* ${p.id}\n*Total verificado:* ${dinero(p.total)} (envío por confirmar)\n_Si el WhatsApp del cliente muestra otro total, vale este._`,
     "*QUÉ DESPACHAR*\n" + p.items.map((i) => "• " + lineaProducto(i)).join("\n"),
     `*CLIENTE*\n${p.cliente.nombre}\n${p.cliente.telefono}`,
     "*DÓNDE*\n" + lineasEntrega(p).join("\n"),
@@ -319,6 +384,7 @@ function correoNegocioHtml(p) {
     <tr><td style="padding:28px 28px 0">
       <div style="font-size:24px;font-weight:700;color:${C.navy}">¡Nuevo pedido desde la web!</div>
       <div style="font-size:14px;color:${C.muted};margin-top:6px">Pedido <strong style="color:${C.navy}">${p.id}</strong> · ${esc(p.fecha)}</div>
+      <div style="margin-top:14px;padding:10px 14px;background:#FFF8E6;border-left:4px solid ${C.gold};font-size:13px;line-height:1.5;color:${C.navy}">El total de este correo lo calcula el sistema con los precios de la web. <strong>Si el WhatsApp del cliente muestra otro total, vale el de este correo.</strong></div>
     </td></tr>
     ${bloque("Qué despachar", tablaProductos(p))}
     ${bloque("Dónde entregar", donde)}
@@ -332,6 +398,7 @@ function correoNegocioHtml(p) {
 function correoNegocioTexto(p) {
   return [
     "¡Nuevo pedido desde la web!",
+    "Total verificado por el sistema: si el WhatsApp del cliente muestra otro total, vale el de este correo.",
     `Pedido: ${p.id} · ${p.fecha}`,
     "QUÉ DESPACHAR\n" + p.items.map((i) => "- " + lineaProducto(i)).join("\n") +
       (p.descuento ? `\nPromo 2do a mitad de precio: -${dinero(p.descuento)}` : "") +
@@ -398,6 +465,21 @@ async function enviarWhatsapp(telefono, clave, mensaje) {
   try {
     const res = await fetch(url);
     return res.ok;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function verificarTurnstile(secreto, token, ip) {
+  if (!token) return false;
+  const datos = new FormData();
+  datos.append("secret", secreto);
+  datos.append("response", token);
+  if (ip) datos.append("remoteip", ip);
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: datos });
+    const r = await res.json();
+    return r.success === true;
   } catch (e) {
     return false;
   }
